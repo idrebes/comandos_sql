@@ -108,3 +108,9 @@ AND t.id_escola = ce.id_escola
 AND ce1.id_candidato = c.id)
 
 --LISTAR O NOME DO CANDIDATO, NOME DA ESCOLA E O NOME DO SEU NÍVEL DE ENSINO CONFORME A SUA TURMA
+SELECT candidatos.nome, escolas.nome, niveis_ensino.nome, turmas.id_turmas
+FROM candidatos, escolas, niveis_ensino, turmas, candidatos_escolas
+WHERE niveis_ensino.id_niveis_ensino = turmas.id_niveis_ensino
+AND turmas.id_escola = candidatos_escolas.id_escola
+AND escolas.id = 
+ORDER BY candidatos.nome
