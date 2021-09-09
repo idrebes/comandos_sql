@@ -1,16 +1,8 @@
-/*
-id = serial
-nome = turma 1
-idade_inicio = 0
-idade_fim = 1
-*/
-
-
 CREATE TABLE niveis_ensino(
 id_niveis_ensino SERIAL NOT NULL,
 nome VARCHAR(20) NOT NULL,
-idade_inicio CHAR(1) NOT NULL,
-idade_fim CHAR(1) NOT NULL,
+idade_inicio INTEGER NOT NULL,
+idade_fim INTEGER NOT NULL,
 CONSTRAINT pk_niveis_ensino PRIMARY KEY (id_niveis_ensino)
 );
 
@@ -19,10 +11,6 @@ INSERT INTO niveis_ensino VALUES(DEFAULT, 'Turma 2',1,2);
 INSERT INTO niveis_ensino VALUES(DEFAULT, 'Turma 3',2,3);
 INSERT INTO niveis_ensino VALUES(DEFAULT, 'Turma 4',3,4);
 
-SELECT * FROM turmas
-
-DROP TABLE turmas
-
 CREATE TABLE turmas(
 id_turmas SERIAL NOT NULL,
 id_niveis_ensino INTEGER NOT NULL,
@@ -30,9 +18,11 @@ id_escola INTEGER NOT NULL,
 capacidade INTEGER NOT NULL,
 CONSTRAINT pk_turmas PRIMARY KEY (id_turmas),
 CONSTRAINT fk_id_niveis_ensino FOREIGN KEY (id_niveis_ensino) REFERENCES niveis_ensino,
-CONSTRAINT fk_id_escola FOREIGN KEY (id_escola) REFERENCES turmas
+CONSTRAINT fk_id_escola FOREIGN KEY (id_escola) REFERENCES escolas
 );
 
+ALTER TABLE candidatos_escolas
+ADD id_turma INTEGER;
 
 INSERT INTO turmas VALUES(DEFAULT,1,10,1);
 INSERT INTO turmas VALUES(DEFAULT,2,10,2);
@@ -84,17 +74,6 @@ INSERT INTO turmas VALUES(DEFAULT,2,1,1);
 INSERT INTO turmas VALUES(DEFAULT,3,1,2);
 INSERT INTO turmas VALUES(DEFAULT,4,1,9);
 
-
-drop table turmas
-
-ALTER TABLE candidatos_escolas
-ADD id_turma INTEGER;
-
-SELECT * FROM candidatos_escolas
-
-SELECT * FROM turmas
-
-SELECT * FROM niveis_ensino
 
 --LISTAR idade DO CANDIDATO
 SELECT id, DATE_PART('year', age(data_nascimento)) as idade, 
