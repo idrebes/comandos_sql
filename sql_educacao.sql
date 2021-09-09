@@ -89,11 +89,11 @@ WHERE DATE_PART('year', age(data_nascimento)) >= idade_inicio
 AND DATE_PART('year', age(data_nascimento)) < idade_fim;
 
 --LISTAR A TURMA DA ESCOLA DE ACORDO COM A FAIXA ETÁRIA DO CANDIDATO
-SELECT c.nome, c.data_nascimento, t.id_turma as turma, n.idade_inicio, n.idade_fim
+SELECT c.nome, c.data_nascimento, t.id_turmas as turma, n.idade_inicio, n.idade_fim
 FROM candidatos_escolas ce, candidatos c, niveis_ensino n, turmas t
 WHERE DATE_PART('year', age(data_nascimento)) >= idade_inicio 
 AND DATE_PART('year', age(data_nascimento)) < idade_fim
-AND c.id = ce.id_candidato AND n.id = t.id_nivel_ensino 
+AND c.id = ce.id_candidato AND n.id_niveis_ensino = t.id_niveis_ensino 
 AND t.id_escola = ce.id_escola
 ORDER BY c.id
 
