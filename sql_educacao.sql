@@ -106,3 +106,5 @@ AND DATE_PART('year', age(data_nascimento)) < idade_fim
 AND c.id = ce.id AND n.id_niveis_ensino = t.id_niveis_ensino 
 AND t.id_escola = ce.id_escola
 AND ce1.id_candidato = c.id)
+
+--LISTAR O NOME DO CANDIDATO, NOME DA ESCOLA E O NOME DO SEU NÍVEL DE ENSINO CONFORME A SUA TURMA
